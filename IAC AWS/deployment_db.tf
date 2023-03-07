@@ -39,9 +39,9 @@ resource "kubernetes_deployment" "db" {
           }
         }
         spec {
-        #   image_pull_secrets {
-        #     name = "${kubernetes_secret.example2.metadata.0.name}"
-        #   }
+           image_pull_secrets {
+             name = "${kubernetes_secret.example2.metadata.0.name}"
+           }
           container {
             image = "vkmyshuttlesample.azurecr.io/db:latest"
             name  = "db"
