@@ -1,3 +1,22 @@
+resource "kubernetes_secret" "example1" {
+  metadata {
+    name = "docker-cfg2"
+  }
+
+  type = "kubernetes.io/dockerconfigjson"
+
+  data = {
+    ".dockerconfigjson" = jsonencode({
+      auths = {
+        "vkmyshuttlesample.azurecr.io" = {
+          "username" = "vkmyshuttlesample"
+          "password" = "QZKZ2XcxxxcoLAEhhrsE1CS81LbgilS8a71uXGqm7P+ACRAHmqBb"
+          
+        }
+      }
+    })
+  }
+}
 resource "kubernetes_deployment" "angular" {
     metadata {
       labels = {
