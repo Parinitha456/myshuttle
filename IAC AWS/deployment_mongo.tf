@@ -24,7 +24,7 @@ resource "kubernetes_deployment" "db" {
         #     name = "${kubernetes_secret.example2.metadata.0.name}"
         #   }
           container {
-            image = "vishwavk2021/oneinsights_mongo:latest"
+            image = "vkmyshuttlesample.azurecr.io/db:latest"
             name  = "db"
             port {
               container_port = 27017
