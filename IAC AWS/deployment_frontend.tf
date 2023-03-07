@@ -24,7 +24,7 @@ resource "kubernetes_deployment" "angular" {
         #     name = "${kubernetes_secret.example1.metadata.0.name}"
         #   }
           container {
-            image = "vishwavk2021/oneinsights_frontend:latest"
+            image = "vkmyshuttlesample.azurecr.io/web:latest"
             name  = "myshuttle"
             image_pull_policy = "Always"
             port {
