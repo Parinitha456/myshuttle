@@ -1,34 +1,9 @@
-// resource "kubernetes_namespace" "angular" {
-//   metadata {
-//     name = "angular"
-//   }
-// }
-# resource "kubernetes_secret" "example1" {
-#   metadata {
-#     name = "docker-cfg1"
-#   }
-
-#   type = "kubernetes.io/dockerconfigjson"
-
-#   data = {
-#     ".dockerconfigjson" = jsonencode({
-#       auths = {
-#          "oneinsightsregistryy.azurecr.io" = {
-#           "username" = "oneinsightsregistryy"
-#           "password" = "Ic7FynmG5n5D0UZXC820RN2FWfUA3/=Y"
-         
-#         }
-#       }
-#     })
-#   }
-# }
-
 resource "kubernetes_deployment" "angular" {
     metadata {
       labels = {
         app = "angular"
       }
-      name = "bolt"
+      name = "myshuttle"
       // namespace = kubernetes_namespace.angular.metadata.0.name
     }
     spec {
@@ -50,7 +25,7 @@ resource "kubernetes_deployment" "angular" {
         #   }
           container {
             image = "vishwavk2021/oneinsights_frontend:latest"
-            name  = "bolt"
+            name  = "myshuttle"
             image_pull_policy = "Always"
             port {
               container_port = 8080
@@ -62,7 +37,7 @@ resource "kubernetes_deployment" "angular" {
 }
 resource "kubernetes_service" "angular" {
     metadata {
-      name = "bolt"
+      name = "myshuttle"
     }
     spec {
       selector = {
