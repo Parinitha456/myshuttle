@@ -1,28 +1,3 @@
-// resource "kubernetes_namespace" "mongo" {
-//   metadata {
-//     name = "mongo"
-//   }
-// }
-# resource "kubernetes_secret" "example2" {
-#   metadata {
-#     name = "docker-cfg2"
-#   }
-
-#   type = "kubernetes.io/dockerconfigjson"
-
-#   data = {
-#     ".dockerconfigjson" = jsonencode({
-#       auths = {
-#         "oneinsightsregistryy.azurecr.io" = {
-#           "username" = "oneinsightsregistryy"
-#           "password" = "Ic7FynmG5n5D0UZXC820RN2FWfUA3/=Y"
-         
-#         }
-#       }
-#     })
-#   }
-# }
-
 resource "kubernetes_deployment" "db" {
     metadata {
       name      = "db"
