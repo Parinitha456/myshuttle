@@ -1,4 +1,4 @@
-resource "kubernetes_secret" "example1" {
+resource "kubernetes_secret" "example2" {
   metadata {
     name = "docker-cfg2"
   }
