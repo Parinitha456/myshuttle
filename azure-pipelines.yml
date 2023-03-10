@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: ubuntu-18.04
 
 steps:
 
@@ -27,7 +27,7 @@ steps:
     options: '-Dtest=FaresTest,SimpleTest'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    testRunTitle: 'Junit Test'
+    testRunTitle: 'Junit'
     codeCoverageToolOption: 'JaCoCo'
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
