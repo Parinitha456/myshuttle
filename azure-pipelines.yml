@@ -48,30 +48,30 @@ steps:
     dockerComposeFile: 'docker-compose.yml'
     action: 'Build services'
 
-- task: DockerCompose@0
-  inputs:
-    containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Visual Studio Enterprise Subscription – MPN (1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
-    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/latest-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample"}'
-    dockerComposeFile: 'docker-compose.yml'
-    action: 'Run services'
+# - task: DockerCompose@0
+#   inputs:
+#     containerregistrytype: 'Azure Container Registry'
+#     azureSubscription: 'Visual Studio Enterprise Subscription – MPN (1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
+#     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/latest-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample"}'
+#     dockerComposeFile: 'docker-compose.yml'
+#     action: 'Run services'
 
-- task: DockerCompose@0
-  inputs:
-    containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Visual Studio Enterprise Subscription – MPN (1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
-    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/latest-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample"}'
-    dockerComposeFile: 'docker-compose.yml'
-    action: 'Push services'
+# - task: DockerCompose@0
+#   inputs:
+#     containerregistrytype: 'Azure Container Registry'
+#     azureSubscription: 'Visual Studio Enterprise Subscription – MPN (1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
+#     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/latest-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample"}'
+#     dockerComposeFile: 'docker-compose.yml'
+#     action: 'Push services'
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'IAC AWS'
-    Contents: '**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: 'IAC AWS'
+#     Contents: '**'
+#     TargetFolder: '$(build.artifactstagingdirectory)'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
