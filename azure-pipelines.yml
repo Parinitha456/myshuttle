@@ -1,0 +1,77 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'Sonarqube'
+    scannerMode: 'Other'
+    extraProperties: |
+      mvn sonar:sonar \
+        -Dsonar.projectKey=Myshuttle_app \
+        -Dsonar.host.url=http://74.234.253.19:9000 \
+        -Dsonar.login=e13436ac5b9b349badf54b0c4e36a41875bf9161
+
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    options: '-Dtest=FaresTest,SimpleTest'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testRunTitle: 'Junit Test'
+    codeCoverageToolOption: 'JaCoCo'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'latest'
+
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Visual Studio Enterprise Subscription – MPN (1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
+    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/latest-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample"}'
+    dockerComposeFile: 'docker-compose.yml'
+    action: 'Build services'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Visual Studio Enterprise Subscription – MPN (1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
+    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/latest-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample"}'
+    dockerComposeFile: 'docker-compose.yml'
+    action: 'Run services'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Visual Studio Enterprise Subscription – MPN (1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
+    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/latest-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample"}'
+    dockerComposeFile: 'docker-compose.yml'
+    action: 'Push services'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'IAC AWS'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
