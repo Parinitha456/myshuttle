@@ -8,9 +8,9 @@ resource "kubernetes_secret" "example1" {
   data = {
     ".dockerconfigjson" = jsonencode({
       auths = {
-        "vkmyshuttlesample.azurecr.io" = {
-          "username" = "vkmyshuttlesample"
-          "password" = "QZKZ2XcxxxcoLAEhhrsE1CS81LbgilS8a71uXGqm7P+ACRAHmqBb"
+        "vkmyshuttlesample1.azurecr.io" = {
+          "username" = "vkmyshuttlesample1"
+          "password" = "/ImX0gAHonfqlbCJ8lJIwHhKUGJqvyaWMfENc0qHlu+ACRBsVxCD"
           
         }
       }
