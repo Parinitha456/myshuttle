@@ -5,7 +5,7 @@
 #
 
 resource "aws_iam_role" "demo-node" {
-  name = var.demo-node
+  name = var.demo-nodename
 
   assume_role_policy = <<POLICY
 {
