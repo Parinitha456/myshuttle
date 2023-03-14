@@ -1,8 +1,9 @@
 variable "aws_region" {
-  default = "us-west-1"
+  type = string
+  description = "AWS Region to create resource"
 }
 
 variable "cluster-name" {
-  default = "terraform-eks-demo"
-  type    = string
+  type = string
+  description = "Cluster name of AKS"
 }
