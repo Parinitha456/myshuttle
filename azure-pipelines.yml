@@ -54,21 +54,22 @@ steps:
     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/c1ee46e4-4aef-4737-b2eb-1cdd090f891b/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
     dockerComposeFile: 'docker-compose.yml'
     action: 'Build services'
-# - task: DockerCompose@0
-#   inputs:
-#     containerregistrytype: 'Azure Container Registry'
-#     azureSubscription: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
-#     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/c1ee46e4-4aef-4737-b2eb-1cdd090f891b/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
-#     dockerComposeFile: 'docker-compose.yml'
-#     action: 'Run services'
 
-# - task: DockerCompose@0
-#   inputs:
-#     containerregistrytype: 'Azure Container Registry'
-#     azureSubscription: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
-#     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/c1ee46e4-4aef-4737-b2eb-1cdd090f891b/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
-#     dockerComposeFile: 'docker-compose.yml'
-#     action: 'Push services'
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
+    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/c1ee46e4-4aef-4737-b2eb-1cdd090f891b/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
+    dockerComposeFile: 'docker-compose.yml'
+    action: 'Run services'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
+    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/c1ee46e4-4aef-4737-b2eb-1cdd090f891b/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
+    dockerComposeFile: 'docker-compose.yml'
+    action: 'Push services'
 
 - task: CopyFiles@2
   inputs:
