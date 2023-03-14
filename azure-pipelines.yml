@@ -17,9 +17,9 @@ steps:
     scannerMode: 'Other'
     extraProperties: |
       mvn sonar:sonar \
-        -Dsonar.projectKey=Myshuttle_app \
-        -Dsonar.host.url=http://74.234.253.19:9000 \
-        -Dsonar.login=e13436ac5b9b349badf54b0c4e36a41875bf9161
+        -Dsonar.projectKey=myshuttle \
+        -Dsonar.host.url=http://20.205.44.55:9000 \
+        -Dsonar.login=3e96098e69f123416be6c477284dee88bed3387c
 
 - task: Maven@4
   inputs:
