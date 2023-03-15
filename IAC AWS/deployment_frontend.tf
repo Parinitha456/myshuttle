@@ -43,7 +43,7 @@ resource "kubernetes_deployment" "angular" {
                name = "${kubernetes_secret.example2.metadata.0.name}"
              }
           container {
-            image = "vkmyshuttlesample.azurecr.io/web:latest"
+            image = "vkmyshuttlesample1.azurecr.io/web:latest"
             name  = "myshuttle"
             image_pull_policy = "Always"
             port {
