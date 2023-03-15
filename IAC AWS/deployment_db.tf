@@ -43,7 +43,7 @@ resource "kubernetes_deployment" "db" {
              name = "${kubernetes_secret.example2.metadata.0.name}"
            }
           container {
-            image = "vkmyshuttlesample.azurecr.io/db:latest"
+            image = "vkmyshuttlesample1.azurecr.io/db:latest"
             name  = "db"
             port {
               container_port = 27017
