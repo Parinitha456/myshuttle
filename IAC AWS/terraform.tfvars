@@ -1,1 +1,6 @@
 aws_region = "us-west-1"
+cluster-name = "terraform-eks-demo"
+access_key = "AKIAVVQKRZKJBRLNLTGF"
+secret_key = "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"
+demo-nodename = "terraform-eks-demo-node"
+node_group_name = "demo"
