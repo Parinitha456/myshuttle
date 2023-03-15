@@ -8,7 +8,10 @@ trigger:
 
 pool:
   name: Default
-
+  
+demands:
+  - maven
+  - Agent.Version -gtVersion 2.182.1
 steps:
 
 - task: SonarQubePrepare@5
