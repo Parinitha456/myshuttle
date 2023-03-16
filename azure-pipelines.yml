@@ -103,7 +103,7 @@ steps:
     targetType: 'inline'
     script: |
       echo "changing Directory"
-      cd $(System.DefaultWorkingDirectory)/azure/vnet
+      cd $(System.DefaultWorkingDirectory)/IAC AWS
       echo "Showing PWD"
       pwd
       echo "Showing list of resources"
