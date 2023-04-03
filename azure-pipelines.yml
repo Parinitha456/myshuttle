@@ -67,32 +67,32 @@ steps:
     dockerComposeFile: 'docker-compose.yml'
     action: 'Push services'
 
-- task: TerraformInstaller@1
-  inputs:
-    terraformVersion: 'latest'
-- task: TerraformTaskV4@4
-  inputs:
-    provider: 'azurerm'
-    command: 'init'
-    workingDirectory: 'IAC AWS'
-    backendServiceArm: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
-    backendAzureRmResourceGroupName: 'DefaultResourceGroup-EA'
-    backendAzureRmStorageAccountName: 'myshuttle01'
-    backendAzureRmContainerName: 'myshuttle'
-    backendAzureRmKey: 'terraform.tfstate'
+# - task: TerraformInstaller@1
+#   inputs:
+#     terraformVersion: 'latest'
+# - task: TerraformTaskV4@4
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'init'
+#     workingDirectory: 'IAC AWS'
+#     backendServiceArm: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
+#     backendAzureRmResourceGroupName: 'DefaultResourceGroup-EA'
+#     backendAzureRmStorageAccountName: 'myshuttle01'
+#     backendAzureRmContainerName: 'myshuttle'
+#     backendAzureRmKey: 'terraform.tfstate'
 
-- task: TerraformTaskV4@4
-  inputs:
-    provider: 'azurerm'
-    command: 'validate'
-    workingDirectory: 'IAC AWS'
+# - task: TerraformTaskV4@4
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'validate'
+#     workingDirectory: 'IAC AWS'
 
-- task: TerraformTaskV4@4
-  inputs:
-    provider: 'azurerm'
-    command: 'apply'
-    workingDirectory: 'IAC AWS'
-    environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
+# - task: TerraformTaskV4@4
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'apply'
+#     workingDirectory: 'IAC AWS'
+#     environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
 
 - task: Bash@3
   inputs:
