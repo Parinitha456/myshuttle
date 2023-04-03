@@ -43,8 +43,8 @@ steps:
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
-    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/c1ee46e4-4aef-4737-b2eb-1cdd090f891b/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
+    azureSubscription: 'Visual Studio Enterprise Subscription – MPN (1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
+    azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/latest-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample"}'
     dockerComposeFile: 'docker-compose.yml'
     action: 'Build services'
 - task: DockerCompose@0
