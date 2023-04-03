@@ -7,11 +7,11 @@ trigger:
 - manual
 
 pool:
-  # vmImage: ubuntu-18.04
-  name: Default
-  demands:
-    - maven
-    - Agent.Version -gtVersion 2.182.1
+  vmImage: ubuntu-18.04
+  # name: Default
+  # demands:
+  #   - maven
+  #   - Agent.Version -gtVersion 2.182.1
 
 
 steps:
