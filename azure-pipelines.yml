@@ -18,8 +18,8 @@ steps:
     extraProperties: |
       mvn sonar:sonar \
         -Dsonar.projectKey=myshuttle \
-        -Dsonar.host.url=http://20.205.44.55:9000 \
-        -Dsonar.login=3e96098e69f123416be6c477284dee88bed3387c
+        -Dsonar.host.url=http://40.85.146.106:9000/ \
+        -Dsonar.login=e9ceff7d2faf3b986f070cd9cdb363a6ff0a691f
 
 - task: Maven@4
   inputs:
