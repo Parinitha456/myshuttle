@@ -8,11 +8,6 @@ trigger:
 
 pool:
   vmImage: ubuntu-18.04
-  # name: Default
-  # demands:
-  #   - maven
-  #   - Agent.Version -gtVersion 2.182.1
-
 
 steps:
 
@@ -26,11 +21,6 @@ steps:
         -Dsonar.host.url=http://40.85.146.106:9000/ \
         -Dsonar.login=e9ceff7d2faf3b986f070cd9cdb363a6ff0a691f
 
-
-- script: |
-    sudo apt-get install -y libstdc++6
-    export MAVEN_OPTS="-Djavax.xml.bind.JAXBContextFactory=com.sun.xml.bind.v2.ContextFactory -Djavax.xml.accessExternalSchema=all"
-  displayName: 'Install dependencies and set environment variables'
 
 - task: Maven@4
   inputs:
@@ -51,8 +41,6 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
 
-
-
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Azure Container Registry'
@@ -60,7 +48,6 @@ steps:
     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
     dockerComposeFile: 'docker-compose.yml'
     action: 'Build services'
-
 
 - task: DockerCompose@0
   inputs:
