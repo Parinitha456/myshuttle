@@ -73,12 +73,11 @@ steps:
     provider: 'azurerm'
     command: 'init'
     workingDirectory: 'IAC AWS'
-    backendServiceArm: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
-    backendAzureRmResourceGroupName: 'DefaultResourceGroup-EA'
-    backendAzureRmStorageAccountName: 'myshuttle01'
-    backendAzureRmContainerName: 'myshuttle'
+    backendServiceArm: 'Visual Studio Enterprise Subscription – MPN(1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
+    backendAzureRmResourceGroupName: 'trial-rg'
+    backendAzureRmStorageAccountName: 'trialstorageaccount2'
+    backendAzureRmContainerName: 'trail'
     backendAzureRmKey: 'terraform.tfstate'
-
 - task: TerraformTaskV4@4
   inputs:
     provider: 'azurerm'
@@ -90,7 +89,7 @@ steps:
     provider: 'azurerm'
     command: 'apply'
     workingDirectory: 'IAC AWS'
-    environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription – MPN(c1ee46e4-4aef-4737-b2eb-1cdd090f891b)'
+    environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription – MPN(1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
 
 - task: Bash@3
   inputs:
