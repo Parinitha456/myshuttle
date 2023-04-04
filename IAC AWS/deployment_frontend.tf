@@ -10,8 +10,7 @@ resource "kubernetes_secret" "example2" {
       auths = {
         "vkmyshuttlesample1.azurecr.io" = {
           "username" = "vkmyshuttlesample1"
-          "password" = "/ImX0gAHonfqlbCJ8lJIwHhKUGJqvyaWMfENc0qHlu+ACRBsVxCD"
-          
+          "password" = "8BsQkjH55yOkZi+gfnCONIIVPXNOMsrt1T1M5ryBNt+ACRAaOzdR"
         }
       }
     })
