@@ -36,7 +36,7 @@ steps:
     SonarQube: 'cicdgen-sonar-svc-conn'
     scannerMode: 'Other'
     extraProperties: |
-      sonar.host.url=http://40.85.146.106:9000
+      sonar.host.url='http://40.85.146.106:9000'
       sonar.login=$(sonarqube.auth.token)
       sonar.branch.name=$(Build.SourceBranchName)
 
