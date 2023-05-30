@@ -28,7 +28,7 @@ steps:
   inputs:
     SonarQube: 'cicdgen-sonar-svc-conn'
     scannerMode: 'MSBuild'
-    projectKey: test-project'
+    projectKey: 'test-project'
     projectName: 'test-project'
     extraProperties: |
       sonar.host.url=http://40.85.146.106:9000/
