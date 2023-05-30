@@ -10,29 +10,18 @@ pool:
   vmImage: ubuntu-20.04
 
 steps:
+- task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      options: '-Dtest=FaresTest,SimpleTest'
+      goals: 'clean test'
 
-    - task: Maven@3
-      displayName: "Maven Build"
-      inputs:
-        mavenPomFile: 'pom.xml'
-        goals: 'clean install'
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: 'JaCoCo'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml'
+      reportDirectory: '$(System.DefaultWorkingDirectory)/target/site/jacoco'
 
-    - task: Maven@3
-      displayName: 'Run tests'
-      inputs:
-        mavenPomFile: 'pom.xml'
-        options: '-Dmaven.test.failure.ignore=true'
-        goals: 'test'
-        publishJUnitResults: true
-
-    - task: PublishTestResults@2
-      displayName: "Publish JUnit Test Results"
-      condition: succeededOrFailed()
-      inputs:
-        testResultsFormat: 'JUnit'
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        searchFolder: '$(System.DefaultWorkingDirectory)'
-        mergeTestResults: true
 
 # - task: SonarQubePrepare@5
 #   inputs:
