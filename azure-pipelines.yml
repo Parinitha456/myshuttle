@@ -11,16 +11,16 @@ pool:
 
 steps:
 - task: Maven@3
-    inputs:
-      mavenPomFile: 'pom.xml'
-      options: '-Dtest=FaresTest,SimpleTest'
-      goals: 'clean test'
+  inputs:
+    mavenPomFile: 'pom.xml'
+    options: '-Dtest=FaresTest,SimpleTest'
+    goals: 'clean test'
 
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: 'JaCoCo'
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml'
-      reportDirectory: '$(System.DefaultWorkingDirectory)/target/site/jacoco'
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'JaCoCo'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/target/site/jacoco'
 
 
 # - task: SonarQubePrepare@5
