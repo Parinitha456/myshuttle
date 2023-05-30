@@ -14,7 +14,8 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Dtest=FaresTest,SimpleTest'
-    goals: 'clean install'
+    goals: 'clean test'
+
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'JaCoCo'
