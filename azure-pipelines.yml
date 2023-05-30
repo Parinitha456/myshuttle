@@ -13,14 +13,19 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    options: '-Dtest=FaresTest,SimpleTest'
-    goals: 'clean test'
-
+    mavenOptions: '-Dtest=FaresTest,SimpleTest'
+    goals: 'clean install'
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'JaCoCo'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/target/site/jacoco'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/target/site/jacoco/jacoco.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/target/site/jacoco'
+- task: PublishTestResults@2
+  inputs:
+      testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
+      searchFolder: '**'
+      mergeTestResults: true
+      testRunTitle: 'Project Unit Tests'
 
 
 # - task: SonarQubePrepare@5
