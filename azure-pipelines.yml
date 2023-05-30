@@ -33,6 +33,12 @@ steps:
       sonar.login=$(sonarqube.auth.token)
       sonar.branch.name=$(Build.SourceBranchName)
 
+- task: SonarQubeAnalyze@4
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
+
 # - script: |
 #     mvn sonar:sonar -Dsonar.host.url=http://40.85.146.106:9000
 #       -Dsonar.login=$(sonarqube.auth.token) \
