@@ -20,9 +20,16 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    mavenOptions: '-Dtest=FaresTest,SimpleTest'
     goals: 'surefire:test'
+    publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenOptions: '-Dtest=FaresTest,SimpleTest'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'latest'
 
 - task: SonarQubePrepare@4
   inputs:
@@ -33,8 +40,8 @@ steps:
       sonar.login=$(sonarqube.auth.token)
       sonar.branch.name=$(Build.SourceBranchName)
 
-- task: SonarQubeAnalyze@4
-
+# - task: SonarQubeAnalyze@4
+# # - task: SonarQubeAnalyze@5
 - task: SonarQubePublish@4
   inputs:
     pollingTimeoutSec: '300'
