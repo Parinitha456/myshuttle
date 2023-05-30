@@ -27,6 +27,15 @@ steps:
       searchFolder: '**'
       mergeTestResults: true
       testRunTitle: 'Project Unit Tests'
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'cicdgen-sonar-svc-conn'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'test-project'
+    cliProjectName: 'test-project'
+    cliSources: 'src'
+
 
 
 # - task: SonarQubePrepare@5
