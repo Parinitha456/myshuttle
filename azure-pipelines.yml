@@ -30,10 +30,10 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'test-project'
     projectName: 'test-project'
-    extraProperties: |
-      sonar.host.url=http://40.85.146.106:9000/
-      sonar.login=$(sonarqube.auth.token)
-      # sonar.branch.name=$(Build.SourceBranchName)
+    # extraProperties: |
+    #   sonar.host.url=http://40.85.146.106:9000/
+    #   sonar.login=$(sonarqube.auth.token)
+    #   # sonar.branch.name=$(Build.SourceBranchName)
 
 - script: |
     mvn sonar:sonar -Dsonar.host.url=https://mysonarqubeurl \
