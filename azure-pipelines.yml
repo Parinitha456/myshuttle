@@ -34,7 +34,7 @@ steps:
       sonar.branch.name=$(Build.SourceBranchName)
 
 - script: |
-    mvn sonar:sonar -Dsonar.host.url=https://mysonarqubeurl \
+    mvn sonar:sonar -Dsonar.host.url=http://40.85.146.106:9000
       -Dsonar.login=$(sonarqube.auth.token) \
       -Dsonar.branch.name=$(Build.SourceBranchName)
   displayName: 'Run SonarQube analysis'
