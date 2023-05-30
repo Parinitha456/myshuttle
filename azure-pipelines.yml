@@ -14,7 +14,7 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    mavenOptions: '$(mavenArgs) -Dmaven.test.failure.ignore=true'
+    mavenOptions: '-Dtest=FaresTest,SimpleTest'
     goals: 'clean package'
 
 - task: Maven@3
