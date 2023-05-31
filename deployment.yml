@@ -16,5 +16,5 @@ spec:
               echo "Hello, Kubernetes!"
               echo "My artifact is located at: /path/to/artifact/my-artifact.jar"
               # Execute your application using the artifact
-              java -jar /path/to/artifact/my-artifact.jar
+              java -jar $(Build.ArtifactStagingDirectory)/drop/target/myshuttledev.war
       restartPolicy: Never
