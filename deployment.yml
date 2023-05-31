@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-app-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: my-app-container
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              # Add your commands to utilize the artifact here
+              echo "Hello, Kubernetes!"
+              echo "My artifact is located at: /path/to/artifact/my-artifact.jar"
+              # Execute your application using the artifact
+              java -jar /path/to/artifact/my-artifact.jar
+      restartPolicy: Never
