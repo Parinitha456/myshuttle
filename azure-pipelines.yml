@@ -23,6 +23,12 @@ steps:
     mavenPomFile: 'pom.xml'
     goals: 'test'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
 - task: SonarQubePrepare@4
   inputs:
     SonarQube: 'cicdgen-sonar-svc-conn'
@@ -32,7 +38,7 @@ steps:
     #   sonar.login=$(SonarQubeToken)
     #   sonar.host.url=$(SonarQubeUrl)
 
-- task: SonarQubeAnalyze@5
+# - task: SonarQubeAnalyze@5
 
 - task: SonarQubePublish@5
   inputs:
