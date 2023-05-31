@@ -34,7 +34,7 @@ steps:
     #   sonar.login=$(SonarQubeToken)
     #   sonar.host.url=$(SonarQubeUrl)
 
-- task: SonarQubeAnalyze@4
+- task: SonarQubeAnalyze@5
 
 - task: SonarQubePublish@4
   inputs:
