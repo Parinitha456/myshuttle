@@ -25,7 +25,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'test-jars/snakeyaml-1.17.jar'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.jar'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
