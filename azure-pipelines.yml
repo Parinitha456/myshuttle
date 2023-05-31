@@ -9,8 +9,8 @@ trigger:
 pool:
   vmImage: ubuntu-20.04
 
-variables:
-  - group: 'Kubernetes Connection'
+# variables:
+#   - group: 'Kubernetes Connection'
 
 
 steps:
@@ -56,11 +56,9 @@ steps:
 - task: KubernetesManifest@0
   displayName: 'Deploy to Kubernetes'
   inputs:
-    connectionType: 'CICDGen-Kube-SVC-Conn'
-    kubernetesServiceConnection: '$(KubernetesConnection)'
+    action: 'deploy'
+    kubernetesServiceConnection: 'CICDGen-Kube-SVC-Conn'
     manifests: '$(Build.ArtifactStagingDirectory)/deployment.yml'
-    command: 'apply'
-    arguments: '--wait'
 
 
 # - task: SonarQubePrepare@4
