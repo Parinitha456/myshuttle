@@ -24,15 +24,15 @@ steps:
 
 - task: SonarQubePrepare@4
   inputs:
-    SonarQube: 'SonarQube'
+    SonarQube: 'sonar-svc-conn'
     scannerMode: 'CLI'
     configMode: 'manual'
     cliProjectKey: 'new-cicdgen-project'
     cliProjectName: 'new-cicdgen-project'
     cliSources: 'src'
-    extraProperties: |
-      sonar.login=$(SonarQubeToken)
-      sonar.host.url=$(SonarQubeUrl)
+    # extraProperties: |
+    #   sonar.login=$(SonarQubeToken)
+    #   sonar.host.url=$(SonarQubeUrl)
 
 - task: SonarQubeAnalyze@4
 
