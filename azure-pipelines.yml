@@ -50,6 +50,15 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
 
+- task: KubernetesManifest@0
+  displayName: 'Deploy to Kubernetes'
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceConnection: '$(KubernetesConnection)'
+    manifests: '$(Build.ArtifactStagingDirectory)/deployment.yml'
+    command: 'apply'
+    arguments: '--wait'
+
 
 # - task: SonarQubePrepare@4
 #   inputs:
