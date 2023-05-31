@@ -24,7 +24,7 @@ steps:
 
 - task: SonarQubePrepare@4
   inputs:
-    SonarQube: 'sonar-svc-conn'
+    SonarQube: 'cicdgen-sonar-svc-conn'
     scannerMode: 'CLI'
     configMode: 'manual'
     cliProjectKey: 'new-cicdgen-project'
