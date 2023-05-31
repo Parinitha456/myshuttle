@@ -9,6 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-20.04
 
+
 steps:
 
 - task: Maven@3
@@ -39,6 +40,7 @@ steps:
 - task: SonarQubePublish@5
   inputs:
     pollingTimeoutSec: '300'
+
 
 # - task: SonarQubePrepare@4
 #   inputs:
