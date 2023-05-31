@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-20.04
 
+variables:
+  - group: 'Kubernetes Connection'
+
 
 steps:
 
@@ -53,7 +56,7 @@ steps:
 - task: KubernetesManifest@0
   displayName: 'Deploy to Kubernetes'
   inputs:
-    connectionType: 'Kubernetes Service Connection'
+    connectionType: 'CICDGen-Kube-SVC-Conn'
     kubernetesServiceConnection: '$(KubernetesConnection)'
     manifests: '$(Build.ArtifactStagingDirectory)/deployment.yml'
     command: 'apply'
