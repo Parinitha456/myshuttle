@@ -15,7 +15,7 @@ steps:
       mavenPomFile: 'pom.xml'
       mavenOptions: '-Dtest=FaresTest,SimpleTest'
       goals: 'package'
-  
+      
   - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
@@ -26,7 +26,6 @@ steps:
     inputs:
       Contents: '**'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
   - task: PublishBuildArtifacts@1
     displayName: Publish Artifacts
     inputs:
@@ -39,7 +38,6 @@ steps:
       SonarQube: 'cicdgen-sonar-svc-conn'
       scannerMode: 'CLI'
       configMode: 'file'
-
   - task: KubernetesManifest@0
     displayName: 'Deploy to Kubernetes'
     inputs:
