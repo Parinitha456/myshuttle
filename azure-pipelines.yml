@@ -33,14 +33,14 @@ steps:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: 'drop'
       publishLocation: 'Container'
-  - task: SonarQubeScanner@4
+  - task: SonarQubePrepare@4
     displayName: Run SonarQube Analysis
     inputs:
       SonarQube: 'cicdgen-sonar-svc-conn'
-      projectKey: 'my-project'
       scannerMode: 'CLI'
+      configMode: 'file'
 
-  - task: Kubernetes@1
+  - task: KubernetesManifest@1
     displayName: Deploy to Kubernetes
     inputs:
       action: 'Deploy'
