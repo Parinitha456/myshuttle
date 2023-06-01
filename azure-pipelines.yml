@@ -4,130 +4,56 @@
 # https://aka.ms/yaml
 
 trigger:
-- manual
+  - manual
 
 pool:
   vmImage: ubuntu-20.04
 
-steps:
-- task: Maven@3
-  inputs:
+jobs:
+- job: Build
+  steps:
+  - task: Maven@3
+    displayName: Build with Maven
+    inputs:
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Dtest=FaresTest,SimpleTest'
+      goals: 'package'
+  
+  - task: Maven@3
+    inputs:
     mavenPomFile: 'pom.xml'
-    mavenOptions: '-Dtest=FaresTest,SimpleTest'
-    goals: 'clean test'
+    goals: 'test'
 
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'JaCoCo'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/target/site/jacoco/jacoco.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/**/target/site/jacoco'
-- task: PublishTestResults@2
-  inputs:
-      testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
-      searchFolder: '**'
-      mergeTestResults: true
-      testRunTitle: 'Project Unit Tests'
+  - task: CopyFiles@2
+    displayName: Copy Artifacts
+    inputs:
+      Contents: '**'
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
 
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Artifacts
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'drop'
+      publishLocation: 'Container'
 
-# - task: SonarQubePrepare@5
-#   inputs:
-#     SonarQube: 'Sonarqube'
-#     scannerMode: 'Other'
-#     extraProperties: |
-#       mvn sonar:sonar \
-#         -Dsonar.projectKey=myshuttle \
-#         -Dsonar.host.url=http://40.85.146.106:9000/ \
-#         -Dsonar.login=e9ceff7d2faf3b986f070cd9cdb363a6ff0a691f
+- job: SonarQube
+  dependsOn: Build
+  steps:
+  - task: SonarQubeScanner@2
+    displayName: Run SonarQube Analysis
+    inputs:
+      SonarQube: 'cicdgen-sonar-svc-conn'
+      projectKey: 'my-project'
+      scannerMode: 'CLI'
 
-# - task: Maven@4
-#   inputs:
-#     mavenPomFile: 'pom.xml'
-#     options: '-Dtest=FaresTest,SimpleTest'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#     testRunTitle: 'Junit'
-#     codeCoverageToolOption: 'JaCoCo'
-#     javaHomeOption: 'JDKVersion'
-#     mavenVersionOption: 'Default'
-#     mavenAuthenticateFeed: false
-#     effectivePomSkip: false
-#     sonarQubeRunAnalysis: true
-#     sqMavenPluginVersionChoice: 'latest'
-
-# - task: SonarQubePublish@5
-#   inputs:
-#     pollingTimeoutSec: '300'
-
-# - task: DockerCompose@0
-#   inputs:
-#     containerregistrytype: 'Azure Container Registry'
-#     azureSubscription: 'Visual Studio Enterprise Subscription – MPN(1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
-#     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
-#     dockerComposeFile: 'docker-compose.yml'
-#     action: 'Build services'
-
-# - task: DockerCompose@0
-#   inputs:
-#     containerregistrytype: 'Azure Container Registry'
-#     azureSubscription: 'Visual Studio Enterprise Subscription – MPN(1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
-#     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
-#     dockerComposeFile: 'docker-compose.yml'
-#     action: 'Run services'
-
-# - task: DockerCompose@0
-#   inputs:
-#     containerregistrytype: 'Azure Container Registry'
-#     azureSubscription: 'Visual Studio Enterprise Subscription – MPN(1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
-#     azureContainerRegistry: '{"loginServer":"vkmyshuttlesample1.azurecr.io", "id" : "/subscriptions/1abc6b47-3cb9-49d1-a93f-75de014a8e71/resourceGroups/trial-rg/providers/Microsoft.ContainerRegistry/registries/vkmyshuttlesample1"}'
-#     dockerComposeFile: 'docker-compose.yml'
-#     action: 'Push services'
-
-# - task: TerraformInstaller@1
-#   inputs:
-#     terraformVersion: 'latest'
-
-# - task: TerraformTaskV4@4
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'init'
-#     workingDirectory: 'IAC AWS'
-#     backendServiceArm: 'Visual Studio Enterprise Subscription – MPN(1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
-#     backendAzureRmResourceGroupName: 'trial-rg'
-#     backendAzureRmStorageAccountName: 'trialstorageaccount2'
-#     backendAzureRmContainerName: 'trail'
-#     backendAzureRmKey: 'terraform.tfstate'
-# - task: TerraformTaskV4@4
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'validate'
-#     workingDirectory: 'IAC AWS'
-
-# - task: TerraformTaskV4@4
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'apply'
-#     workingDirectory: 'IAC AWS'
-#     environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription – MPN(1abc6b47-3cb9-49d1-a93f-75de014a8e71)'
-
-# - task: Bash@3
-#   inputs:
-#     targetType: 'inline'
-#     script: |
-#       echo "changing Directory"
-#       cd $(System.DefaultWorkingDirectory)/IAC AWS
-#       echo "Showing PWD"
-#       pwd
-#       echo "Showing list of resources"
-#       ls -latr
-
-# - task: CopyFiles@2
-#   inputs:
-#     SourceFolder: 'IAC AWS'
-#     Contents: '**'
-#     TargetFolder: '$(build.artifactstagingdirectory)'
-
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#     ArtifactName: 'drop'
-#     publishLocation: 'Container'
+- job: Deploy
+  dependsOn: SonarQube
+  steps:
+  - task: Kubernetes@1
+    displayName: Deploy to Kubernetes
+    inputs:
+      action: 'Deploy'
+      namespace: 'default'
+      kubernetesServiceConnection: 'CICDGen-Kube-SVC-Conn'
+      manifests: '$(Build.ArtifactStagingDirectory)/deployment.yml'
