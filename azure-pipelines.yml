@@ -4,8 +4,7 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  - group: 'KubernetesCluster'
+
 
 steps:
 - task: Maven@3
