@@ -40,10 +40,9 @@ steps:
       scannerMode: 'CLI'
       configMode: 'file'
 
-  - task: KubernetesManifest@1
-    displayName: Deploy to Kubernetes
+  - task: KubernetesManifest@0
+    displayName: 'Deploy to Kubernetes'
     inputs:
-      action: 'Deploy'
-      namespace: 'default'
+      action: 'deploy'
       kubernetesServiceConnection: 'CICDGen-Kube-SVC-Conn'
       manifests: '$(Build.ArtifactStagingDirectory)/deployment.yml'
