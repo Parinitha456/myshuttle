@@ -1,4 +1,4 @@
-FROM tomcat:9.0.78-jdk8-corretto-al2
+FROM tomcat:9.0.84-jdk8-corretto-al2
 
 RUN apk --update add curl ca-certificates tar 
 RUN set -x \
